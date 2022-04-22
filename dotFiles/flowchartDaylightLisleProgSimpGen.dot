@@ -1,0 +1,52 @@
+digraph {
+rankdir = UD
+
+start -> input
+
+input [shape="parallelogram", label=<d<sub>dir</sub>, d>];
+input -> inputDefault;
+
+inputDefault [shape="parallelogram", label=<n &larr; 36 <br/> m &larr; 360>];
+inputDefault -> decision1
+
+decision1 [shape=diamond, label=<d = 00 &deg;>];
+decision1 -> pointDaylight [label="1"];
+pointDaylight -> openSemicircleEast
+openSemicircleEast -> b
+
+pointDaylight [shape="box", label=<E = [pointDaylight]>];
+openSemicircleEast [shape="box", label=<D = [open semicircle east]>];
+b [shape="circle", label=<b>];
+
+decision1 -> decision2 [label="0"];
+decision2 [shape=diamond, label=<d = 90 &deg;>];
+decision2 -> closedSemicircleWest [label="1"];
+decision2 -> rakeED [label="0"];
+closedSemicircleWest [shape=box, label=<E = [closed semicircle west]>];
+closedSemicircleWest -> linePlaneTrace
+linePlaneTrace [shape=box, label=<D = [line Plane Trace]>];
+linePlaneTrace -> b
+
+rakeED [shape=box, label=<rE = [r1|r2| &hellip; |rm] with U(n) <br/> rD = [r1|r2| &hellip; |rn] with U(m)>];
+
+ED [shape=box, label=<E = [Eq. 26] <br/> D = [Eq. 9]>];
+rakeED -> ED;
+ED -> b;
+
+decision7 [shape=diamond, label=<d<sub>dir</sub> = 90 &deg;>];
+b -> decision7;
+decision7 -> EDhatEquiv [label="1"];
+decision7 -> EDhat [label="0"];
+
+EDhatEquiv [shape=box, label=<E = E <br/> D = D>];
+EDhat [shape=box, label=<E = R E <br/> D = R D>];
+
+EDhatEquiv -> end
+EDhat -> end
+}
+/*
+ Reference: http://lornajane.net/posts/2011/drawing-flow-diagrams-with-graphviz
+ In order to run:
+ dot -Tsvg flowchartDaylightLisleProgSimpGen.dot > flowchartDaylightLisleProgSimpGen.svg
+*/
+

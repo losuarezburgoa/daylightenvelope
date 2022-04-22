@@ -1,0 +1,38 @@
+digraph {
+rankdir = UD
+
+daylight -> daylighteast
+daylighteast -> pointdaylight
+daylighteast -> closedsemicirclewest
+daylighteast -> opensemicircleeast
+daylighteast -> lineplanetrace
+daylighteast -> daylighteqareaeastgen
+daylighteast -> planeeqareaeastgen
+daylighteast -> daylighteqangleeastgen
+daylighteast -> planeeqangleeastgen
+
+daylighteqangleeastgen -> genrakelist0to90uniform
+daylighteqangleeastgen -> genrakelist0to90triangular
+daylighteqangleeastgen -> genrakelist0to90saltbox
+
+daylighteqareaeastgen -> genrakelist0to90uniform
+daylighteqareaeastgen -> genrakelist0to90triangular
+daylighteqareaeastgen -> genrakelist0to90saltbox
+
+genrakelist0to90uniform -> dip2maxpoints
+
+genrakelist0to90triangular -> dip2rakeofmaxcurvature
+genrakelist0to90triangular -> dip2maxpoints
+genrakelist0to90triangular -> rndtriang
+
+genrakelist0to90saltbox -> dip2rakeofmaxcurvature
+genrakelist0to90saltbox -> dip2maxpoints
+genrakelist0to90saltbox -> rndsaltbox
+
+plotalldipplanes -> daylight
+plotdaylight
+}
+/*
+ In order to run:
+ dot -Tsvg daylightEnvelopeRels.dot > daylightEnvelopeRels.svg
+*/

@@ -1,0 +1,78 @@
+digraph {
+rankdir = UD
+
+start -> input
+
+input [shape="parallelogram", label=<d<sub>dir</sub>, d>];
+input -> inputDefault;
+
+inputDefault [shape="parallelogram", label=<n &larr; 36 <br/> m &larr; 'gen' <br/> genType &larr; 'saltbox'>];
+inputDefault -> decision1
+
+decision1 [shape=diamond, label=<d = 00 &deg;>];
+decision1 -> pointDaylight [label="1"];
+pointDaylight -> openSemicircleEast
+openSemicircleEast -> b
+
+pointDaylight [shape="box", label=<E = [0, 0]>];
+openSemicircleEast [shape="box", label=<D = [open semicircle east]>];
+b [shape="circle", label=<b>];
+
+decision1 -> decision2 [label="0"];
+decision2 [shape=diamond, label=<d = 90 &deg;>];
+decision2 -> closedSemicircleWest [label="1"];
+decision2 -> decision3 [label="0"];
+closedSemicircleWest [shape=box, label=<E = [closed semicircle west]>];
+closedSemicircleWest -> linePlaneTrace
+linePlaneTrace [shape=box, label=<D = [0, -1; 0, 1]>];
+linePlaneTrace -> b
+
+decision3 [shape=diamond, label=<m = 'gen'>];
+decision3 -> decision5 [label="1"];
+decision3 -> decision4 [label="0"];
+decision4 [shape=diamond, label=<m is int_number>];
+decision5 [shape=diamond, label=<genType = 'triangular'>];
+
+
+decision4 -> rndUniform [label="1"];
+decision4 -> error [label="0"];
+rndUniform [shape=box, label=<F^{-1} &larr; U[0,90,n]>];
+error [label=<Error: wrong number type!>];
+error -> fin
+
+rndUniform -> a;
+decision5 -> rndTriangular [label="1"];
+decision5 -> decision6 [label="0"];
+rndTriangular [shape=box, label=<F^{-1} &larr; T[0,90,c,n]>];
+
+decision6 [shape=diamond, label=<genType = 'saltbox'>];
+decision6 -> rndSaltbox [label="1"];
+decision6 -> a [label="0"];
+rndSaltbox [shape=box, label=<F^{-1} &larr; S[0,90,c,p,n]>];
+rndSaltbox -> a;
+rakeE [shape=box, label=<rE = [r1|r2| &hellip; |rm] with F^{-1}(n)>];
+rakeE -> rakeD;
+rakeD [shape=box, label=<rD = [r1|r2| &hellip; |rn] with U(n)>];
+a [shape=circle, label=<a>];
+a -> rakeE;
+ED [shape=box, label=<E = [Eq. 26] <br/> D = [Eq. 9]>];
+rakeD -> ED;
+ED -> b;
+
+decision7 [shape=diamond, label=<d<sub>dir</sub> = 90 &deg;>];
+b -> decision7;
+decision7 -> EDhatEquiv [label="1"];
+decision7 -> EDhat [label="0"];
+
+EDhatEquiv [shape=box, label=<E = E <br/> D = D>];
+EDhat [shape=box, label=<E = R E <br/> D = R D>];
+
+EDhatEquiv -> fin
+EDhat -> fin
+}
+/*
+ Reference: http://lornajane.net/posts/2011/drawing-flow-diagrams-with-graphviz
+ In order to run:
+ dot -Tsvg flowchartDaylightLisleProg.dot > flowchartDaylightLisleProg.svg
+*/
+

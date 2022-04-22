@@ -1,0 +1,32 @@
+daylightenvelope
+├── bins
+│   ├── daylighteast.m
+│   ├── daylighteqangleeastgen.m
+│   ├── daylighteqareaeastgen.m
+│   ├── daylight.m
+│   ├── dip2maxpoints.m
+│   ├── dip2rakeofmaxcurvature.m
+│   ├── genrakelist0to90saltbox.m
+│   ├── genrakelist0to90triangular.m
+│   ├── genrakelist0to90uniform.m
+│   ├── planeeqangleeastgen.m
+│   ├── planeeqareaeastgen.m
+│   ├── plotalldipplanes.m
+│   ├── plotdaylight.m
+│   ├── rndsaltbox.m
+│   └── rndtriang.m
+├── dotFiles
+│   ├── flowchartDaylightLisleProg.dot
+│   ├── flowchartDaylightLisleProgSimp.dot
+│   ├── flowchartDaylightLisleProgSimpGen.dot
+├── examples
+│   ├── example1StepByStepEqAngleSCR.m
+│   ├── example1StepByStepEqAreaSCR.m
+│   ├── example2BeattieLamm1977eqangleSCR.m
+│   ├── example2BeattieLamm1977eqareaSCR.m
+│   ├── example3GrechiEtal2021eqangleSCR.m
+│   ├── example3GrechiEtal2021eqareaSCR.m
+├── license.txt
+└── verifications
+    ├── lisleFig3creationEqangleSCR.m
+    └── lisleFig3creationEqareaSCR.m
